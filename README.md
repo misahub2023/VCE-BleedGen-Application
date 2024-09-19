@@ -89,7 +89,7 @@ These instructions will guide you through setting up and running the app on your
         + `Runner-Bridging-Header.h` (used to integrate Swift and Objective-C code)
 + [assets/](assets) (This folder contains the weights of the model used in the app) 
 + lib/
-    + [home.dart](lib/home.dart) (implements the functionality for selecting and classifying images using the model)
+    + [home.dart](lib/home.dart) (implements the functionality multi-task learning over Video Capsule endoscopy frames)
     + [main.dart](lib/main.dart) (The entry point of the Flutter application)
 + test/
     + [widget_test.dart](test/widget_test.dart) (File for testing the widgets of the app)
