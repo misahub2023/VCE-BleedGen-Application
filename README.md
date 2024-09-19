@@ -65,7 +65,6 @@ These instructions will guide you through setting up and running the app on your
         + `gradle-wrapper.properties` (Specifies properties for the Gradle wrapper, such as the Gradle distribution URL)
     + [build.gradle](android/build.gradle) (Top-level build configuration file for the project, specifying project-wide dependencies and build settings)
     + [gradle.properties](android/gradle.properties) (Specifies properties for the Gradle build system, such as JVM options and project properties)
-    + [research_project_android.iml](android/research_project_android.iml) (IntelliJ IDEA module file for the project)
     + `[settings.gradle](android/settings.gradle) (Specifies the Gradle settings for the project, including module names and build configurations)
 
 + ios/
@@ -88,7 +87,6 @@ These instructions will guide you through setting up and running the app on your
         + `AppDelegate.swift` (This file contains the entry point for the iOS app and handles app lifecycle events)
         + `Info.plist` (contains configuration settings for the iOS app, such as app permissions, icons, and other metadata)
         + `Runner-Bridging-Header.h` (used to integrate Swift and Objective-C code)
-    + [Podfile](ios/Podfile) (This file is used by CocoaPods to manage your app's dependencies)
 + [assets/](assets) (This folder contains the weights of the model used in the app) 
 + lib/
     + [home.dart](lib/home.dart) (implements the functionality for selecting and classifying images using the model)
