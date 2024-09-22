@@ -1,7 +1,7 @@
 #  VCE_BleedGEN-App
 
 ## Project Overview
-
+VCEBleedGen is a real-time application designed for the classification, detection, and segmentation of bleeding frames in video capsule endoscopy (VCE) footage. It offers both single-frame and batch processing capabilities, delivering results with a latency of under 2 seconds. Built for on-premise use, VCEBleedGen runs entirely offline, ensuring full control over data privacy and security while performing all three tasks seamlessly. This efficient, locally-deployed solution aids in quickly identifying bleeding events, streamlining analysis and enhancing decision-making during endoscopic procedures.
 
 
 ## Getting Started
