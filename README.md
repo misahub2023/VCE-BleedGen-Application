@@ -108,4 +108,4 @@ These instructions will guide you through setting up and running the app on your
 5. Create a new Pull Request.
 
 ## Credits
-
+The idea of the project was developed by Dr. Palak Handa. The development of the application, its integration and workflow was developed by Divyansh Nautiyal. The initial draft of the manuscript was drafted by Divyansh Nautiyal along with its Figures and Tables. Dr. Palak Handa and Tanisha Singh helped in writing, editing the manuscript and Manya Joshi helped in developing the Github repository of the application. No funding was received for this project.
