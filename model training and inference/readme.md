@@ -26,7 +26,7 @@
             + images/
             + annotations/
 
-## Training Scripts
+## Training and Inference Scripts
 ### Segmentation
 
 - **Models**: The following segmentation models were trained:
@@ -144,9 +144,106 @@ The **Faster R-CNN** model was trained with the following hyperparameters:
     ```
     Replace `/path/to/dataset` with the source dataset directory and `/path/to/output` with the target directory for the split dataset.
 
-2. 
+2. yaml_prep.py: 
+This script generates a **YOLO dataset configuration YAML file**, specifying the dataset path and train/validation image directories. The generated file is used for training YOLO models.  
 
-  
+   ##### **Usage:**  
+   ```bash
+   python yaml_prep.py --output_path /path/to/save --dataset_path /path/to/dataset
+   ```
+   Replace `/path/to/save` with the directory where the YAML file should be saved and `/path/to/dataset` with the base dataset directory.
+3. yolo_training.py:
+This script trains a **YOLOv5nu or YOLOv12n model** on a custom dataset using the Ultralytics YOLO framework. It loads the specified model, trains it for a given number of epochs, and saves the results.  
+
+   ##### **Usage:**  
+   ```bash
+   python yolo_training.py --model_name yolov5nu --data_path /path/to/custom_data1.yaml --epochs 100
+   ```
+4. yolo_inference.py:
+   This script performs object detection on an input image using a trained YOLO model. It loads the model, runs inference, and displays the image with detected bounding boxes.
+   ##### **Usage:**
+   ```bash
+   python yolo_inference.py --model_path yolov5nu.pt --image_path /path/to/image.jpg
+   ```
+#### Fasterrcnn scripts:
+1. data_loader.py:
+This script loads the **Wireless Capsule Endoscopy (WCE) dataset** for object detection using PyTorch. It reads images and Pascal VOC format bounding box annotations, applies transformations, and prepares batches for model training.  
+   ##### **Usage:**  
+   ```bash
+   python data_loader.py --dataset_root /path/to/dataset --split train
+   ```  
+   Replace `/path/to/dataset` with the dataset's root directory and choose `train` or `val` for the dataset split.
+2. training.py: 
+This script trains a **Faster R-CNN** model using the **Wireless Capsule Endoscopy (WCE) bleeding dataset**. It logs training loss, validation loss, and mAP@0.5 while saving the best model based on validation performance.  
+
+   ##### **Usage:**  
+   ```bash
+   python training.py --dataset_root /path/to/dataset --batch_size 4 --epochs 100 --lr 1e-4
+   ```  
+   Replace `/path/to/dataset` with the dataset's root directory and adjust hyperparameters as needed.
+3. inference.py:
+This script loads a trained **Faster R-CNN** model and runs inference on a given image. It processes the image using **Torchvision transforms** and outputs raw model predictions.  
+
+   ##### **Usage:**  
+   ```bash
+   python inference.py --model_path best.pth --image_path sample.jpg
+   ```  
+   Replace `best.pth` with the path to your trained model and `sample.jpg` with the image file for inference.
+
+## Explainability Plots
+
+For all models Eigencam plots were generated using the deepest convolutional layer of the respective architectures.
+### scripts:
+1. eigencam_torch.py:
+   This script contains the standard torch implementation of the eigencam plot
+2. eigencam_tensorflow.py:
+   This script contains the standard tensorflow implementation of the eigencam plot.
+3. yolo_modified_eigencam_torch.py:
+   This script contains the modified implementation of eigencam in pytorch to make it compatible with the yolo models.
+4. gen_heatmap_segmentation.py:
+This script loads a **segmentation model**, applies **EigenCAM** to generate a heatmap for a given layer, and overlays the segmentation mask on the input image. The final overlay is saved as `overlay.png`.  
+
+   ##### **Usage:**  
+   ```bash
+   python gen_heatmap_segmentation.py --model_name unet --weights_path model_weights.h5 \
+   --output_path ./results --layer_name conv5_block3_out --image_path sample.jpg
+   ```  
+   Replace `unet` with your model name, `model_weights.h5` with the trained weights, and `sample.jpg` with the image file for visualization.
+5. gen_heatmap_yolo.py:
+This script applies **EigenCAM** to a YOLO model, generating a **heatmap overlay** on an input image for a specific model layer. The result is displayed and saved as `overlay.png`.  
+
+   ##### **Usage:**  
+   ```bash
+   python gen_heatmap_yolo.py --model_path yolov5nu --image_path sample.jpg --layer_name model.23
+   ```  
+   Replace `yolov5nu` with the chosen model, `sample.jpg` with the input image, and `model.23` with the target layer for visualization.
+
+6. gen_heatmap_fasterrcnn.py:
+This script applies **EigenCAM** to a Fastercnn model, generating a **heatmap overlay** for a specific model layer. The heatmap is displayed and saved to a specified output path.  
+
+   ##### **Usage:**  
+   ```bash
+   python gen_heatmap_fasterrcnn.py --model_path yolov5nu --image_path sample.jpg --layer_name model.23 --output_path results/
+   ```  
+   - `--model_path` → Choose between `yolov5nu` or `yolo12n`.  
+   - `--image_path` → Path to the image for visualization.  
+   - `--layer_name` → Target layer name for EigenCAM visualization.  
+   - `--output_path` → Folder where `overlay.png` will be saved.
+
+7. detection_annotation.py:
+This script overlays **bounding boxes and confidence scores** on EigenCAM heatmaps to visualize object detection results.
+
+   ##### **Usage:**  
+   ```bash
+   python annotate_eigencam.py --heatmap_path heatmap.png --bbox 50 60 150 180 --conf 0.92 --output_path results/
+   ```  
+   - `--heatmap_path` → Path to the **EigenCAM heatmap** image.  
+   - `--bbox` → Bounding box coordinates `[x_min, y_min, x_max, y_max]`.  
+   - `--conf` → Confidence score of the detected object.  
+   - `--output_path` → Directory to save the **annotated heatmap** as `annotated_eigencam.png`.
+8. segmentation_annotation.py:
+The function in the script draws segmentation mask boundaries on an overlay image, highlighting detected regions.
+
 
 
 
