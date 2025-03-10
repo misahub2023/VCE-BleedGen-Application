@@ -4,10 +4,10 @@
 VCE-BleedGen application is a real-time application designed for the automatic classification of bleeding and non-bleeding frames and then further detection and segmentation of the bleeding region in the bleeding frames in a video capsule endoscopy (VCE) footage. It offers both single-frame and batch processing capabilities, delivering results with a latency of under 2 seconds. Built for on-premise use, VCEBleedGen runs entirely offline, ensuring full control over data privacy and security while performing all three tasks seamlessly. This efficient, locally-deployed solution aids in quickly identifying bleeding events, streamlining analysis and enhancing decision-making in VCE.
 
 ## Architecture Of The Application
-![](readme_assets/fig_2_pipeline.svg)
+![](readme_assets/)
 
 ## App Workflow
-![](readme_assets/fig_3_app_workflow.svg)
+![](readme_assets/)
 
 ## Getting Started
 These instructions will guide you through setting up and running the app on your local machine.
@@ -108,4 +108,4 @@ These instructions will guide you through setting up and running the app on your
 5. Create a new Pull Request.
 
 ## Credits
-The development of the application, its integration and workflow was developed by Divyansh Nautiyal. The initial draft of the manuscript was drafted by Divyansh Nautiyal along with its figures and tables. Dr. Palak Handa and Tanisha Singh helped in writing, editing the manuscript and Manya Joshi helped in developing the Github repository of the application. No funding was received for this project.
+Palak Handa conceptualized the idea, participated in manuscript writing, figures, and supervised the project. The development of the application and its integration with machine learning models was done by Divyansh Nautiyal. Tanisha Singh and Anushka Saini participated in manuscript writing, and table development. Manas Dhir performed the machine learning analysis and figures. Manya Joshi helped in developing the Github repository of the application. No funding was received for this project. The application is a proof-of-concept, only developed for research purposes, which maybe used for other biomedical applications in AI. Please give appropriate credits before using it. Commercial use can be discussed at palakhanda97@gmail.com
